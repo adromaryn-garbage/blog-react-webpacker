@@ -1,0 +1,35 @@
+development:
+  clients:
+    default:
+      database: blog_development
+      hosts:
+        - localhost:27017
+      options:
+
+
+  # Configure Mongoid specific options. (optional)
+  options:
+
+test:
+  clients:
+    default:
+      database: blog_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
+
+production:
+  clients:
+    default:
+      database: blog
+      hosts:
+        - localhost:27017
+      options:
+        username: <%= ENV['MONGOID_USERNAME'] %>
+        password: <%= ENV['MONGOID_PASSWORD'] %>
+        roles:
+          - 'dbOwner'
+        auth_source: admin

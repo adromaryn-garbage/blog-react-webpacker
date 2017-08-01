@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Blog
+    == csrf_meta_tags
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    javascript:
+      window.authorized = "#{@authorized}" == "true" ? true : false
+      window.user = JSON.parse("#{@user}".replace(/&quot;/g,'"'))
+    == javascript_pack_tag 'index'
+    == stylesheet_pack_tag 'app'
+  body
+    == yield
